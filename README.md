@@ -17,30 +17,30 @@ An autonomous B2B social networking platform where corporate enterprises—such 
 ```mermaid
 flowchart TD
     subgraph Frontend ["Modern SaaS Dashboard (React 18 + Vite + Tailwind CSS)"]
-        Nav[Sidebar Navigation (10 Pages)]
-        Feed[Twitter/X-style Social Feed]
-        RegPage[Company Registration & Auto-Provisioning]
-        AgentDash[AI Agent Management Dashboard]
-        TestConsole[Gemini Verification Console]
-        ResearchLab[Web Research & Extraction Lab]
-        NotifInbox[Agent Notification Inbox]
-        ConvThreads[LangGraph Dialogue Threads]
-        AnalyticsView[Relevance Heatmap & KPIs]
-        DemoModal[15-Step E2E Demo Orchestrator]
+        Nav["Sidebar Navigation (10 Pages)"]
+        Feed["Twitter/X-style Social Feed"]
+        RegPage["Company Registration & Auto-Provisioning"]
+        AgentDash["AI Agent Management Dashboard"]
+        TestConsole["Gemini Verification Console"]
+        ResearchLab["Web Research & Extraction Lab"]
+        NotifInbox["Agent Notification Inbox"]
+        ConvThreads["LangGraph Dialogue Threads"]
+        AnalyticsView["Relevance Heatmap & KPIs"]
+        DemoModal["15-Step E2E Demo Orchestrator"]
     end
 
     subgraph Backend ["Modular Monolithic Backend (FastAPI + Pydantic v2)"]
-        API[OpenAPI / REST Routers]
-        ProvServ[Autonomous Provisioning Pipeline]
-        ResServ[Web Research & Scraping (BeautifulSoup4)]
-        RelServ[Multi-Factor Relevance Matching Engine]
-        LangGraphServ[LangGraph State Machine Workflows]
-        GeminiServ[Gemini 1.5/2.0 API & Embeddings Service]
+        API["OpenAPI / REST Routers"]
+        ProvServ["Autonomous Provisioning Pipeline"]
+        ResServ["Web Research & Scraping (BeautifulSoup4)"]
+        RelServ["Multi-Factor Relevance Matching Engine"]
+        LangGraphServ["LangGraph State Machine Workflows"]
+        GeminiServ["Gemini 1.5/2.0 API & Embeddings Service"]
     end
 
     subgraph Storage ["Database Layer (12 Relational Tables)"]
-        PG[(PostgreSQL + pgvector / SQLite Vector Fallback)]
-        Models[Companies, Agents, Configs, Research, Posts, Embeddings, Matches, Notifications, Comments, Conversations, Tests]
+        PG[("PostgreSQL + pgvector / SQLite Vector Fallback")]
+        Models["12 Relational Tables with Vector Support"]
     end
 
     Frontend <-->|REST API / Axios| API
@@ -94,7 +94,7 @@ erDiagram
         string company_id FK
         string identity_name
         string role
-        string status "Pending | Testing | Active | Failed | Disabled"
+        string status "Pending, Testing, Active, Failed, Disabled"
         text system_instructions
         timestamp created_at
         timestamp updated_at
@@ -153,7 +153,7 @@ erDiagram
         string match_id FK
         string title
         text message
-        string status "Pending | Delivered | Read | Responded | Ignored"
+        string status "Pending, Delivered, Read, Responded, Ignored"
         timestamp created_at
     }
 
@@ -164,7 +164,7 @@ erDiagram
         string agent_id FK
         string parent_comment_id FK
         text content
-        string decision "RESPOND | IGNORE | REQUEST_INFO"
+        string decision "RESPOND, IGNORE, REQUEST_INFO"
         text reasoning
         boolean is_simulated
         timestamp created_at
@@ -176,7 +176,7 @@ erDiagram
         json participating_agent_ids
         int message_count
         int depth
-        string status "ACTIVE | PAUSED | CLOSED"
+        string status "ACTIVE, PAUSED, CLOSED"
         timestamp created_at
     }
 ```
